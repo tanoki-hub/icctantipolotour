@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICCT School Portal - Register</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .terms-trigger-button {
+      margin: 1.5rem auto 0;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 22px;
+      border: 1px solid #1e40af;
+      background: #ffffff;
+      color: #1e40af;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    .terms-trigger-button:hover,
+    .terms-trigger-button:focus {
+      background-color: #eff6ff;
+      box-shadow: 0 10px 20px rgba(30, 64, 175, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.1rem;
+      margin: 1rem auto 1.5rem;
+      border: none;
+      background: transparent;
+      color: #1e40af;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .back-button:hover,
+    .back-button:focus {
+      background: transparent;
+      box-shadow: none;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body class="auth-body">
+  <div class="site-logo-corner"><img src="logo.jpg" alt="ICCT logo"></div>
+  <div id="toast-container" class="toast-container"></div>
+  <button class="back-button" type="button" onclick="goBack()">← Back</button>
+  <main class="auth-grid-container">
+    <section class="auth-visual-panel">
+      <div class="visual-overlay-content">
+        <span class="badge-pill">Create Account</span>
+        <h1 class="portal-title">Join ICCT</h1>
+        <p class="portal-subtitle">Register for access to school dashboards and campus resources.</p>
+      </div>
+    </section>
+    <section class="auth-interactive-panel">
+      <div class="auth-card-wrapper">
+        <header class="auth-card-header">
+          <h2>Register New Account</h2>
+          <p>Enter the details below to create your student account.</p>
+        </header>
+        <div class="auth-card-body">
+          <form id="form-register" novalidate>
+            <div class="form-field-group">
+              <label for="reg-id">School ID</label>
+              <input type="text" id="reg-id" placeholder="UA202500000" required>
+            </div>
+            <div class="form-field-group">
+              <label for="reg-name">Full Name</label>
+              <input type="text" id="reg-name" placeholder="Jane Doe" required>
+            </div>
+            <div class="form-field-group">
+              <label for="reg-email">Email Address</label>
+              <input type="email" id="reg-email" placeholder="you@icct.edu.ph" required>
+            </div>
+            <div class="form-field-group">
+              <label for="reg-password">Password</label>
+              <input type="password" id="reg-password" placeholder="••••••••" required>
+            </div>
+            <div class="form-field-group">
+              <label for="reg-confirm">Confirm Password</label>
+              <input type="password" id="reg-confirm" placeholder="••••••••" required>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn-primary-action">Create Account</button>
+            </div>
+          </form>
+          <footer class="auth-card-footer text-center" style="margin-top: 1.5rem;">
+            <button type="button" class="terms-trigger-button" onclick="toggleTermsDisplay()">View Terms & Regulations</button>
+            <p>Already a member? <a href="index.html" class="btn-text-link">Sign In</a></p>
+          </footer>
+          <div id="termsContent" style="display:none; margin-top: 2rem; padding: 1.5rem; background: rgba(11,61,145,0.04); border-left: 3px solid #1e40af; border-radius: 0 8px 8px 0;">
+            <div style="font-size: 0.875rem; color: #475569; line-height: 1.6; margin-bottom: 1.25rem;" id="termsIntro"></div>
+            <ul id="termsList" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.65rem;"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="db.js"></script>
+  <script src="terms.js"></script>
+  <script>
+    function toggleTermsDisplay() {
+      const termsDiv = document.getElementById('termsContent');
+      const introElement = document.getElementById('termsIntro');
+      const listElement = document.getElementById('termsList');
+      
+      if (termsDiv.style.display === 'none') {
+        introElement.textContent = termsContent.intro;
+        
+        listElement.innerHTML = termsContent.items.map(item => 
+          `<li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.875rem; color: #0f172a; line-height: 1.55;"><span style="flex-shrink: 0; width: 20px; height: 20px; background: rgba(11,61,145,0.1); color: #1e40af; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 800; margin-top: 1px;">✓</span><div><strong>${item.title}:</strong> ${item.description}</div></li>`
+        ).join('');
+        
+        termsDiv.style.display = 'block';
+      } else {
+        termsDiv.style.display = 'none';
+      }
+    }
+
+    document.getElementById('form-register').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const schoolId = document.getElementById('reg-id').value.trim();
+      const fullName = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const password = document.getElementById('reg-password').value;
+      const confirm = document.getElementById('reg-confirm').value;
+
+      if (!schoolId || !fullName || !email || !password || !confirm) {
+        showToast('Please complete all fields.', 'error');
+        return;
+      }
+      if (password !== confirm) {
+        showToast('Passwords do not match.', 'error');
+        return;
+      }
+
+      const result = await DB.registerUser({
+        name: fullName,
+        schoolId,
+        password,
+      });
+
+      if (!result.ok) {
+        showToast(result.msg || 'Registration failed.', 'error');
+        return;
+      }
+
+      showToast('Registration successful. Redirecting to login...', 'success');
+      setTimeout(() => window.location.href = 'index.html', 1200);
+    });
+
+    function showToast(message, type = 'info') {
+      const toastContainer = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+      toast.textContent = message;
+      Object.assign(toast.style, {
+        padding: '12px 20px',
+        marginBottom: '10px',
+        borderRadius: '8px',
+        fontSize: '14px',
+        animation: 'slideIn 0.3s ease',
+        background: type === 'success' ? '#4caf50' : type === 'error' ? '#f44336' : '#2196f3',
+        color: 'white'
+      });
+      toastContainer.appendChild(toast);
+      setTimeout(() => {
+        toast.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+      @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(400px); opacity: 0; } }
+    `;
+    document.head.appendChild(style);
+
+    function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+  </script>
+</body>
+</html>

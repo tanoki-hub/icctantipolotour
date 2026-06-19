@@ -1,0 +1,387 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.site-logo-corner {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.site-logo-corner img {
+  width: 56px;
+  height: auto;
+  display: block;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.2);
+  background: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .site-logo-corner {
+    top: 16px;
+    right: 16px;
+  }
+}
+
+/* Institutional Portal Background */
+body.auth-body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+/* Main Split Grid Container */
+.auth-grid-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; /* Gives the campus image slightly more presence */
+  width: 100%;
+  max-width: 1100px;
+  gap: 0;
+  background: white;
+  border-radius: 12px; /* Standard sleek institutional look */
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  min-height: 650px;
+}
+
+/* Fixed Image Alignment with Academic Deep Blue Overlay */
+.auth-visual-panel {
+  background: linear-gradient(135deg, rgba(16, 44, 87, 0.85) 0%, rgba(53, 162, 235, 0.4) 100%), 
+              url('main.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+  color: white;
+}
+
+.visual-overlay-content {
+  text-align: center;
+  z-index: 2;
+  max-width: 85%;
+}
+
+.portal-title {
+  font-size: 32px;
+  font-weight: 800;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  letter-spacing: 0.5px;
+}
+
+.portal-subtitle {
+  font-size: 16px;
+  opacity: 0.9;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.badge-pill {
+  display: inline-block;
+  background: #f39c12; /* Academic gold accent color */
+  color: #102c57;
+  padding: 8px 20px;
+  border-radius: 4px; /* Clean rectangular corporate look */
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Right Side - Interactive Login Form */
+.auth-interactive-panel {
+  padding: 60px 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: #ffffff;
+}
+
+.auth-card-wrapper {
+  width: 100%;
+  max-width: 360px;
+}
+
+.auth-card-header {
+  margin-bottom: 36px;
+}
+
+.auth-card-header h2 {
+  color: #102c57; /* Deep Navy text */
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.auth-card-header p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.form-field-group {
+  margin-bottom: 20px;
+}
+
+.form-field-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+}
+
+.input-context-wrapper input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  background: #f9fafb;
+}
+
+.input-context-wrapper input:focus {
+  outline: none;
+  border-color: #102c57;
+  box-shadow: 0 0 0 3px rgba(16, 44, 87, 0.15);
+  background: white;
+}
+
+.btn-primary-action {
+  background: #102c57; /* Solid Navy for administrative trust */
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.btn-primary-action:hover {
+  background: #1a4482;
+  transform: translateY(-1px);
+}
+
+.auth-card-footer {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.auth-card-footer p {
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.btn-text-link {
+  color: #102c57;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-text-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsiveness */
+@media (max-width: 850px) {
+  .auth-grid-container {
+    grid-template-columns: 1fr;
+    max-width: 480px;   
+  }
+
+  .auth-visual-panel {
+    display: none; /* Hides image on narrow mobile screens to prioritize login layout */
+  }
+
+  .auth-interactive-panel {
+    padding: 40px 24px;
+  }
+}
+/* Styling for the home page structure and font matching */
+body.portal-home-body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.home-container {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 650px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.home-title {
+  color: #102c57; /* Matches the school portal navy theme */
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.home-description {
+  /* This inherits the parent font family naturally */
+  color: #4b5563; 
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Enhancing navigation links inside buttons */
+.btn-primary-action a {
+  text-decoration: none;
+  color: white; /* Changed to white to contrast cleanly with the navy button */
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ------------------------------------------------------------------
+   Terms & Regulations - Consolidated styles (ICCT theme preserved)
+   - Centers panel, sets max-width, aligns text, consistent bullets
+   - Uses custom bullet via ::before to avoid wrapping misalignment
+------------------------------------------------------------------- */
+.terms-regulations-panel {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 24px auto 0;
+  padding: 0 1rem;
+}
+
+.terms-regulations-panel .terms-container {
+  width: 100%;
+  max-width: 800px;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  margin: 0 auto;
+}
+
+.terms-heading {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 1.6rem;
+  color: #111827;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 10px;
+}
+
+.terms-intro {
+  text-align: justify;
+  margin-bottom: 16px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.terms-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.terms-list .term-item {
+  position: relative;
+  padding: 15px 15px 15px 44px; /* space for custom bullet */
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s ease;
+  cursor: default;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  background: transparent;
+  overflow-wrap: break-word;
+}
+
+.terms-list .term-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.terms-list .term-item:hover {
+  background-color: #f8fafc;
+}
+
+.terms-list .term-item::before {
+  content: "\2022"; /* bullet character */
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  color: #2563eb; /* ICCT accent color */
+  font-size: 18px;
+  line-height: 1;
+}
+
+.term-title,
+.terms-list .term-title {
+  font-weight: 700;
+  color: #102c57;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.term-desc,
+.terms-list .term-desc {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #374151;
+}
+
+@media (max-width: 768px) {
+  .terms-regulations-panel .terms-container {
+    padding: 16px;
+    margin: 16px;
+    max-width: 100%;
+  }
+
+  .terms-list .term-item {
+    padding-left: 40px;
+  }
+
+  .terms-heading {
+    font-size: 1.3rem;
+  }
+}
